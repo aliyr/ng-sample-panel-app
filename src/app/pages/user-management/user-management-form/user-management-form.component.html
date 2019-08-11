@@ -1,0 +1,135 @@
+<app-list-header
+  title="Edit User Information"
+  description="lorem ipsum dolor sit"
+>
+  <button
+    (click)="returnToList()"
+    mat-raised-button
+    class="header-button"
+    color="warn"
+  >
+    cancel
+  </button>
+  <button
+    (click)="save()"
+    mat-raised-button
+    class="header-button"
+    color="accent"
+    [disabled]="!profileForm.valid"
+  >
+    save
+  </button>
+</app-list-header>
+<div class="row" [formGroup]="profileForm">
+  <div class="col-7 form-group-container">
+    <mat-card class="mat-card-container">
+      <app-custom-input
+        controlName="firstName"
+        [errors]="[{ title: 'required', message: 'first name is required' }]"
+        label="First name"
+      ></app-custom-input>
+      <app-custom-input
+        controlName="surname"
+        [errors]="[{ title: 'required', message: 'surname is required' }]"
+        label="surname"
+      ></app-custom-input>
+      <app-custom-input
+        controlName="email"
+        [errors]="[
+          { title: 'required', message: 'email is required' },
+          { title: 'email', message: 'your email is not correct' }
+        ]"
+        label="Email"
+      ></app-custom-input>
+
+      <app-custom-options-select
+        [optionsArray]="roles"
+        controlName="role"
+        label="role"
+        [errors]="[{ title: 'required', message: 'role is required' }]"
+      ></app-custom-options-select>
+    </mat-card>
+  </div>
+  <div class="col-5">
+    <mat-card class="mat-card-container">
+      <app-custom-input
+        controlName="username"
+        [errors]="[{ title: 'required', message: 'username is required' }]"
+        label="username"
+      ></app-custom-input>
+
+
+
+      <div class="form-control-container">
+        <mat-form-field class="mat-input">
+          <mat-label>Back-Office Password</mat-label>
+
+          <input
+            matInput
+            formControlName="backOfficePassword"
+            placeholder="Back-Office Password "
+            [type]="backOfficePasswordHide ? 'password' : 'text'"
+            required
+          />
+          <mat-icon matSuffix (click)="backOfficePasswordHide = !backOfficePasswordHide">{{
+            backOfficePasswordHide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+          <mat-error> Password is <strong>required</strong> </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-control-container">
+        <mat-form-field class="mat-input">
+          <input
+            matInput
+            formControlName="backOfficeRepeatedPassword"
+            placeholder="Repeat Back-Office Password "
+            [type]="backOfficeRepeatedPasswordHide ? 'password' : 'text'"
+            [errorStateMatcher]="confirmPasswordErrorMatcher"
+            required
+          />
+          <mat-icon matSuffix (click)="backOfficeRepeatedPasswordHide = !backOfficeRepeatedPasswordHide">{{
+            backOfficeRepeatedPasswordHide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+          <mat-error
+            *ngIf="
+              profileForm
+                .get('backOfficeRepeatedPassword')
+                .hasError('required') &&
+              profileForm.get('backOfficeRepeatedPassword').value == ''
+            "
+          >
+            password is <strong>required</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="
+              profileForm.hasError('passwordsDoNotMatch') &&
+              profileForm.get('backOfficeRepeatedPassword').value.length > 0
+            "
+          >
+            Passwords do not match!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <app-custom-input
+        controlName="fourDigitPassword"
+        [errors]="[
+          { title: 'required', message: '4 digit password is required' },
+          {
+            title: 'pattern',
+            message: 'your passcode must contain four numbers'
+          }
+        ]"
+        label="four digit password"
+        inputType="password"
+      ></app-custom-input>
+
+      <div class="image-uploader-container">
+        <app-image-uploader></app-image-uploader>
+      </div>
+      <!--<div *ngFor="let res of result">{{res.CompanyId}}</div>-->
+    </mat-card>
+  </div>
+</div>

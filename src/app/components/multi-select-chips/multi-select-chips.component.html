@@ -1,0 +1,37 @@
+<div class="form-control-container">
+  <mat-form-field class="mat-input">
+    <mat-label class="capitalize-text"> {{ inputLabel }} </mat-label>
+    <input
+      type="text"
+      #chosenOption
+      placeholder=" {{ inputLabel }}"
+      matInput
+      [matAutocomplete]="auto"
+      (focus)="isInputTouched = true"
+      [required]="isRequired"
+      (keyup.enter)="!optionsArray ? addToOptions(chosenOption.value) : ''"
+      (keyup)="optionsArray ? _filter(chosenOption.value) : ''"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="addToOptions(chosenOption.value)"
+    >
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-error
+    *ngIf="control.hasError('required') && isInputTouched && isRequired"
+  >
+    At least one {{ inputLabel }} is <strong>required</strong>
+  </mat-error>
+  <mat-chip-list class="mat-input">
+    <mat-chip
+      *ngFor="let option of control.value"
+      (removed)="removeSelectedOptions(option)"
+      >{{ option }}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+</div>

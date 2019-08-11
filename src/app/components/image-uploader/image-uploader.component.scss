@@ -1,0 +1,41 @@
+@import "src/styles";
+
+input {
+  display: none;
+}
+
+.image-upload-container {
+  cursor: pointer;
+}
+
+.img-preview-container {
+  background-color: #3b506a;
+  position: relative;
+  height: 300px;
+
+  .img-preview {
+    background: center center no-repeat;
+    background-size: contain;
+    height: 300px;
+    width: 100%;
+    z-index: 0;
+
+    &-error {
+      display: none;
+    }
+  }
+}
+
+.btn-bwm {
+  color: white;
+  z-index: 1;
+
+  .mat-icon {
+    @include md-icon-size(45px);
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  &:hover {
+    color: map-get($mat-accent, darker);
+  }
+}

@@ -1,0 +1,75 @@
+.form-group-container {
+  .form-control-container {
+    padding-bottom: 15px;
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+  .button-container {
+    padding-top: 20px;
+    .col-6:last-child {
+      justify-content: flex-end;
+      display: flex;
+    }
+  }
+}
+
+.centralize {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) ;
+}
+
+.vertical-centralize {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.horizontal-centralize {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mat-card-container {
+  margin-bottom: 20px;
+}
+
+.mat-input {
+  width: 100%;
+}
+.chip-list {
+  width: 100%;
+}
+
+.parent-overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+.list-loading{
+  background-color: #36485f;
+  min-height: 500px;
+  z-index: 2;
+}
+
+
+// Styles that being used for signup and login pages
+
+.registeration-page-container{
+  height: 100%;
+  background-color: $dark-background;
+  .row{
+    height: 100%;
+
+    .mat-card{
+      max-width: 500px;
+    }
+  }
+}

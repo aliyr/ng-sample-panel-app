@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "app/themes/dark";
+@import 'partial-styles/text';
+@import 'partial-styles/snackbar';
+@import 'partial-styles/custom-scroll';
+@import 'partial-styles/mixins';
+@import 'partial-styles/list';
+@import 'partial-styles/template';
+@import 'partial-styles/button';
+@import 'partial-styles/time-picker';
+
+
+button:focus,
+input:focus {
+  outline: none;
+}
+.company-wizard-stepper{
+  .mat-step-icon-state-number,
+  .mat-step-icon-state-edit{
+    background-color: map-get($mat-primary , darker);
+  }
+  .mat-step-icon-selected{
+    background-color: map-get($mat-primary , lighter);
+  }
+  
+}
+
